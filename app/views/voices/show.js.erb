@@ -1,0 +1,36 @@
+<% if @posts.length > 0 %>
+  (function() {
+    var posts = $("<%= escape_javascript render(@posts) %>");
+    var items = $('.voice-box');
+
+    $('.voices-container').isotope('insert', posts);
+
+    <% if @next_page == 2 || params[:start] %>
+      $('.voices-container').isotope( 'remove', items );
+    <% end %>
+
+    var cont = 0,
+      total_posts = posts.find('img').length;
+    posts.find('img').bind('load error', function(){
+      cont += 1;
+      if (cont == total_posts){
+        $('.voices-container').isotope('reLayout');
+        posts.find('img').unbind('load');
+      }
+    });
+
+    if ($('.voice-box').length == 0){
+        $('.updating-wrapper').fadeOut(2000);
+    }
+
+    $('.updating-wrapper').fadeOut(2000);
+    $('.voice-box').css('visibility', '');
+    $('.voices-container').isotope( 'reLayout' );
+    overlays.unbindEvents().bindEvents();
+    votes.unbindEvents().bindEvents();
+
+    <% if ((@next_page.pred.pred * Setting.posts_per_page) + @posts.size) < @posts_count %>
+      Timeline.checkScroll();
+    <% end %>
+  })();
+<% end %>

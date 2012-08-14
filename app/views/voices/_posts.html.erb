@@ -1,0 +1,31 @@
+<script type="text/template" id="timeline-deactivated">
+  <li class="timeliner disactivated-timeliner" data-year="{{year}}">
+    <a href="#"><span class="timerliner-dot"></span><span class="year-label"><span class="inner-dot-icn"></span><span class="year-text">{{year}}</span></span></a>
+  </li>
+</script>
+<div class="top-scroll" style="z-index:1;position:fixed;cursor:n-resize;width: 100%; height: 50px; right: 30px"></div>
+<div class="bottom-scroll" style="z-index:1;position:fixed;cursor:s-resize;width: 100%; height: 50px; right: 30px"></div>
+<ul class="timeliner-group" data-hansel-component-id="posts-timeliner">
+  <li class="timeliner current">
+    <div id="slider-vertical"></div>
+  </li>
+</ul>
+<div class="panel-padding sweeper">
+
+  <div class="updating-wrapper" <%= "style=\"background-image:url('#{@voice.background}')\"".html_safe if !@voice.background.blank? %> <%= "data-background-loading-image=\"#{@voice.background}\"".html_safe if !@voice.background.blank? %> >
+    <div class="image-bg-patter">
+      <div class="loading-hldr">
+        <div class="loading-wrapper">
+          <div class="spinner">
+            <%= image_tag '/images/loader-posts.gif', :border => '0' %>
+            <p>Loading Voice</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="voices-container" data-hansel-component-id="posts-grid">
+    <%= render @posts %>
+  </div>
+</div>

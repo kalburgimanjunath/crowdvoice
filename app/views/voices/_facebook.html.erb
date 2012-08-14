@@ -1,0 +1,35 @@
+<div class="facebook-container">  <!--no-fb-face"-->
+  <div class="fb-bar padding-voice">
+      <div class="panel-padding">
+        <ul class="connections_grid">
+          <% @voice.supporters.each do |face| %>
+            <li class="grid-item" title="<%= face.username %>" data-uid="<%= face.uid %>"><%= image_tag face.avatar_url %></li>
+          <% end %>
+        </ul>
+        <a href="#" class="fb-button">
+          <span>
+            <span>Support This</span>
+          </span>
+        </a>
+        <br class="clear" />
+        <div class="fb-arrow-cont">
+          <div class="panel-padding">
+            <div class="fb-arrow" style="display:none"></div>
+          </div>
+        </div>
+        <div class="fb-btn-cont" style="display:none">
+          <div class="panel-padding">
+            <div class="fb-btn-bg">
+              <div class="fb-btn-shadow">
+                  <a href="#" class="fb-button-square">
+                    <span>
+                      <span><span class="fb-ico"></span><p>Be the <strong>FIRST</strong> to Support This</p></span>
+                    </span>
+                  </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> 
+  </div>
+</div>

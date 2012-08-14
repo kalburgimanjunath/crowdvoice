@@ -1,0 +1,59 @@
+<div class="voice">
+  <div class="panel-container" data-hansel-component-id="sidebar">
+    <%= render :partial => 'shared/user_menu' %>
+    <div class="voice-search">
+
+        <input class="search" placeholder="Search" type="text" >
+        <span class="clear-search"></span>
+
+      <div class="search-divider"></div>
+      <ul>
+        <li class="mapit">
+          <a class="map-btn"></a>
+          <div class="tooltip">
+            <div class="tooltip-positioner">
+              <p class="tooltip-arrow"><span></span></p>
+              <p class="media-type-info">
+                <strong class="media-type-title">Show Voices on the map.</strong>
+              </p>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="scroller">
+        <div class="searchable">
+          <% cache('aside_menu_bar') do %>
+            <% unless @featured_voices.empty? %>
+              <div class="voice-sec">
+                <h2>Featured Voices</h2>
+                <span class="accordion">more</span>
+              </div>
+              <ul class="voice-feature">
+                <%= render :partial => 'voices/voices', :object => @featured_voices.order('created_at desc') %>
+              </ul>
+            <% end %>
+            <% unless @non_featured_voices.empty? %>
+              <div class="voice-sec">
+                <h2>Current Voices</h2>
+                <span class="accordion">more</span>
+              </div>
+              <ul class="voice-all">
+                <%= render :partial => 'voices/voices', :object => @all_voices %>
+              </ul>
+            <% end %>
+            <% unless @archived_voices.empty? %>
+              <div class="voice-sec">
+                <h2>Archived Voices</h2>
+                <span class="accordion">more</span>
+              </div>
+              <ul class="voice-all">
+                <%= render :partial => 'voices/voices', :object => @archived_voices %>
+              </ul>
+            <% end %>
+          <% end %>
+        </div>
+    </div>
+  </div>
+</div>
+<p class="tab-controller"></p>

@@ -1,0 +1,41 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+en:
+  flash:
+    application:
+      not_logged_in: 'You are not logged in.'
+      not_admin: 'You need to be an administrator to do this.'
+    admin:
+      announcements:
+        create: 'Announcement was successfully created.'
+        update: 'Announcement was successfully updated.'
+        destroy: 'Announcement was successfully destroyed.'
+      settings:
+        update:
+          notice: 'Setting was successfully updated.'
+          posts_per_page_error: "Posts per page can't be less than 25."
+      users:
+        create: 'User was successfully created.'
+        update: 'User was successfully updated.'
+        destroy: 'User was successfully destroyed.'
+      voices:
+        create: 'Voice was successfully created.'
+        update: 'Voice was successfully updated.'
+        destroy: 'Voice was successfully destroyed.'
+    posts:
+      embedly_time_out: "Can't reach the URL. Please try with another URL."
+    sessions:
+      create:
+        invalid_login: "Invalid Email or Password"
+      reset_password_notify:
+        email_sent: 'Email sent.'
+        user_not_found: 'User not found.'
+    subscriptions:
+      create:
+        subscribed: 'You have subscribed to this voice. Check your inbox!'
+      destroy:
+        unsuscribed: 'You have unsubscribed from this voice.'
+    voices:
+      fetch_feeds:
+        fetching: 'Application is now fetching the RSS feeds'
