@@ -1,0 +1,22 @@
+//= require jquery.embedly.min.js
+//= require moment.min.js
+//= require ZeroClipboard.js
+//= require clipboard.js
+//= require qunit.js
+//= require jquery.ba-bbq.min.js
+//= require jquery.form.js
+//= require jquery.imgloaded.js
+//= require cv-class/actionTooltip.js
+//= require cv-class/carousel.js
+//= require cv-class/overlay.js
+//= require cv-class/video_overlay.js
+//= require cv-class/discuss.js
+//= require cv-class/message.js
+//= require cv-class/post.js
+//= require cv-class/excerpt.js
+//= require cv-class/filters.js
+//= require cv-class/votes.js
+//= require init/voices.js
+//= require cv-class/blogWidget.js
+//= require cv-class/timeline.js
+

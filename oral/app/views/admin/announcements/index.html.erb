@@ -1,0 +1,36 @@
+<header class='form'>
+  <ul class="action-buttons clearfix fr">
+    <li>
+      <%= link_to new_admin_announcement_path, {:class => 'button button-gray'} do %>
+      <span class="add"></span>	
+      New Announcement
+      <% end %>
+    </li>
+  </ul>
+  <h2>Announcements</h2>
+</header>
+<section class="with-table">
+  <table class="datatable paginate full">
+    <thead>
+      <tr>
+      <th>Title</th>
+      <th>Voice</th>
+      <th>Url</th>
+      <th colspan="2"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% for announcement in @announcements %>
+      <tr>
+        <td><%= announcement.title %></td>
+        <td><%= link_to announcement.voice.title, announcement.voice %></td>
+        <td><%= announcement.url %></td>
+        <td style="width: 25px"><%= link_to "Edit", edit_admin_announcement_path(announcement) %></td>
+        <td style="width: 25px"><%= link_to "Delete", [:admin, announcement], :confirm => "Are you sure?", :method => :delete %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</section>
+
+<%= paginate @announcements %>

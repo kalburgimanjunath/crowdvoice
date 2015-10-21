@@ -1,0 +1,3 @@
+<% voices.each do |voice| %>
+  <li class="<%= voice.theme %> <%= 'last' if voice == voices.last %>"><%= link_to voice.title, voice_path(voice) %></li>
+<% end %>

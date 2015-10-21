@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  email: MyString
+  voice_id: 1
+  email_hash: MyString
+
+two:
+  email: MyString
+  voice_id: 1
+  email_hash: MyString

@@ -1,0 +1,69 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  title: MyString
+  description: MyText
+  theme: MyString
+  user_id: 1
+  slug: MyString
+  logo: MyString
+  logo_link: MyString
+  sponsor_slogan: MyString
+  sponsor: MyString
+  background: MyString
+  background_copyright: MyString
+  latitude: MyString
+  longitude: MyString
+  location: MyString
+  map_url: MyString
+  twitter_search: MyString
+  featured: false
+  archived: false
+  rss_feed: MyString
+  last_rss: 2012-04-23 12:55:11
+  last_tweet: 2012-04-23 12:55:11
+  approved: false
+  background_thumb_width: 1
+  background_thumb_height: 1
+  background_version: MyString
+  square_background: MyString
+  square_background_width: 1
+  wide_background: MyString
+  wide_background_width: 1
+  wide_background_height: 1
+  square_background_height: 1
+  home_position: 1
+
+two:
+  title: MyString
+  description: MyText
+  theme: MyString
+  user_id: 1
+  slug: MyString
+  logo: MyString
+  logo_link: MyString
+  sponsor_slogan: MyString
+  sponsor: MyString
+  background: MyString
+  background_copyright: MyString
+  latitude: MyString
+  longitude: MyString
+  location: MyString
+  map_url: MyString
+  twitter_search: MyString
+  featured: false
+  archived: false
+  rss_feed: MyString
+  last_rss: 2012-04-23 12:55:11
+  last_tweet: 2012-04-23 12:55:11
+  approved: false
+  background_thumb_width: 1
+  background_thumb_height: 1
+  background_version: MyString
+  square_background: MyString
+  square_background_width: 1
+  wide_background: MyString
+  wide_background_width: 1
+  wide_background_height: 1
+  square_background_height: 1
+  home_position: 1

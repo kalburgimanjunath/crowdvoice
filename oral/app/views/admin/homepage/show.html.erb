@@ -1,0 +1,15 @@
+<header class='form'>
+  <h2>Drag the voices to show them in order in the homepage</h2>
+</header>
+
+<%= form_tag admin_homepage_path, :method => :put do %>
+<section style="padding-left:30px; width: 420px; float:left;" class="treshold">
+<ol id="voices">
+<% @voices.each do |voice| %>
+  <li style="padding:5px 0; cursor: move;" id="voice_<%= voice.id %>">
+    <%= voice.title %>
+  </li>
+<% end %>
+</ol>
+</section>
+<% end %>

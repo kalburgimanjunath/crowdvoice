@@ -1,0 +1,132 @@
+<% head do %>
+  <%= javascript_include_tag 'jquery.li-scroller' %>
+<% end %>
+<% cache('homepage') do %>
+  <div class="panel-padding welcome-padding"></div>
+  <div class="current-voice-bar"></div>
+  <!-- Posts count Tooltip -->
+  <div class="voice-count-tooltip corner-all2">
+    <ul>
+      <li><span class="icons photo-count"></span><span>0</span></li>
+      <li><span class="icons video-count"></span><span>0</span></li>
+      <li class="last"><span class="icons link-count"></span><span>0</span></li>
+    </ul>
+    <span class="arrow arrow-bottom"><span></span></span>
+  </div>
+
+  <div class="panel-padding">
+    <div class="current-voices-container" data-hansel-component-id="voices-grid">
+      <!-- Featured Voice -->
+      <div class="home-columns clearfix">
+
+        <% @columns.each_with_index do |voices_group, i| %>
+
+
+          <div class="column-<%= i + 1 %>">
+
+            <% voices_group.each do |voice| %>
+
+
+              <% if voice.square_version? %>
+                  <div class="voice-list normal-voice">
+                    <div class="voice-list-content">
+                      <%= link_to voice, :title => voice.title do %>
+                        <% if voice.square_background.url %>
+
+                          <%= image_tag voice.square_background.url %>
+
+                        <% end %>
+                        <div class="voice-description">
+                          <div class="voice-description-padding">
+                            <h2><%= voice.title %></h2>
+                            <span class="time-ago">Updated on <%= (voice.posts.approved.first ? voice.posts.approved.first.created_at : voice.updated_at).to_s(:short) %></span>
+                            <span class="voices-count">
+                              <span class="voices-count-right">
+                                <span class="voices-numbers vTooltip" data-counts="({image: <%= voice.posts.approved.by_type('image').count %>, video: <%= voice.posts.approved.by_type('video').count %>, link: <%= voice.posts.approved.by_type('link').count %>})"><%= voice.posts.approved.count %></span>
+                              </span>
+                            </span>
+                          </div>
+                        </div>
+                      <% end %>
+                    </div>
+                  </div>
+              <% elsif voice.wide_version? %>
+
+                  <div class="voice-list featured-voice">
+                    <div class="voice-list-content">
+                      <%= link_to voice, :title => voice.title do %>
+                        <% if voice.wide_background.url %>
+
+                          <%= image_tag voice.wide_background.url %>
+
+                        <% end %>
+                        <div class="voice-description">
+                          <div class="voice-description-padding">
+                            <h2><%= voice.title %></h2>
+                            <p title="<%= voice.description %>"><%= get_excerpt voice.description, 190 %></p>
+                          </div>
+                        </div>
+                      <% end %>
+                    </div>
+                    <div class="news-ticker-holder">
+                      <div class="crowd-noise">
+                        <span class="shader shader-left">
+                          <span class="icons latest"></span>
+                        </span>
+                        <ul class="news-ticker">
+                          <% voice.posts.approved.limit(10).each do |post| %>
+                            <li>
+                              <%= link_to voice_path(voice, :post => post.id), :title => post.title do %>
+                                <span class="icons <%= post.source_type == 'image' ? 'photo' : post.source_type %>-ico"></span><%= post.title %><span class="voice-time"> <%= time_ago_in_words post.created_at %> ago</span>
+                              <% end %>
+                            </li>
+                          <% end %>
+                        </ul>
+                        <span class="shader shader-right">
+                          <span class="voices-count">
+                            <span class="voices-count-right">
+                              <span class="voices-numbers vTooltip" data-counts="({image: <%= voice.posts.approved.by_type('image').count %>, video: <%= voice.posts.approved.by_type('video').count %>, link: <%= voice.posts.approved.by_type('link').count %>})"><%= voice.posts.approved.count %>
+                              </span>
+                            </span>
+                          </span>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+              <% else %>
+
+                  <div class="voice-list voice-without-image">
+                    <div class="voice-list-content">
+                      <%= link_to voice, :title => voice.title do %>
+                        <div class="voice-description">
+                          <div class="voice-description-padding">
+                            <h2><%= voice.title %></h2>
+                            <p><%= get_excerpt voice.description, 190 %></p>
+                            <span class="time-ago">Updated <%= time_ago_in_words voice.posts.approved.first ? voice.posts.approved.first.created_at : voice.updated_at %> ago</span>
+                            <span class="voices-count">
+                              <span class="voices-count-right">
+                                <span class="voices-numbers vTooltip" data-counts="({image: <%= voice.posts.approved.by_type('image').count %>, video: <%= voice.posts.approved.by_type('video').count %>, link: <%= voice.posts.approved.by_type('link').count %>})"><%= voice.posts.approved.count %></span>
+                              </span>
+                            </span>
+                          </div>
+                        </div>
+                      <% end %>
+                    </div>
+                  </div>
+
+              <% end %>
+
+
+            <% end %>
+
+          </div>
+
+        <% end %>
+
+
+
+       </div>
+    </div>
+  </div>
+<% end %>
