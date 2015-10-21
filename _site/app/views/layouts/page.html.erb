@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CrowdVoice</title>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+
+    <%= stylesheet_link_tag :page %>
+
+    <!-- User ID for hansel -->
+    <script type="text/javascript">
+      window.currentUser = '<%= current_user ? current_user.id : 0 %>';
+    </script>
+
+    <%= javascript_include_tag :page %>
+    <%= csrf_meta_tag %>
+    <%= chartbeat_top %>
+    <%= yield(:head) %>
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <!--[if lt IE 9]>
+      <script src="/javascripts/include/html5_ie.js" type="text/javascript"></script>
+      <%= stylesheet_link_tag 'IE/IE' %>
+    <![endif]-->
+  </head>
+  <body>
+    <%= render :partial => "shared/header_logo" %>
+    <%= render :partial => "shared/aside" %>
+    <div class="main-container">
+      <section class="voice-wrapper">
+        <div class="welcome" data-hansel-component-id="top-notice">
+          <p><strong>Welcome!</strong> CrowdVoice is a user-powered service that tracks voices of protest from around the world by crowdsourcing information</p>
+          <ul class="actions">
+            <li><a class="facebook" href="https://www.facebook.com/sharer.php?t=Tracking+voices+of+protest&u=http%3A%2F%2Fwww.crowdvoice.org"></a></li>
+            <li><a class="twitter" href="http://twitter.com/intent/tweet?source=webclient&text=Tracking+voices+of+protest+-+http%3A%2F%2Fwww.crowdvoice.org"></a></li>
+          </ul>
+          <a class="close-message"></a>
+        </div>
+        <%= yield %>
+      </section>
+    </div>
+    <div class="map-container"></div>
+    <%= google_analytics %>
+    <%= chartbeat %>
+  </body>
+</html>

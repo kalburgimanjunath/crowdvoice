@@ -1,0 +1,237 @@
+<% title @voice.title %>
+<%= head do %>
+  <meta property="og:title" content="<%= @voice.title %>"/>
+  <meta property="og:description" content="<%= @voice.description %>"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="<%= voice_url(@voice) %>"/>
+  <meta property="og:site_name" content="CROWDVOICE"/>
+  <meta property="fb:app_id" content="101972966529938"/>
+  <script type="text/javascript">
+    window.timeline_dates = <%= @timeline.to_json.html_safe %>;
+  </script>
+<% end %>
+
+<header class="main-header">
+  <div class="hgroup-theme-image">
+    <div class="theme-image">
+      <p class="top-line"></p>
+    </div>
+  </div>
+
+  <div class="map-overlay">
+    <!-- <iframe src="<%= @voice.map_link %>" width="100%" height="100%"></iframe> -->
+    <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="<%= @voice.map_link %>&amp;z=5&amp;output=embed"></iframe>
+
+    <div class="link-base-container">
+      <div class="back-to-voice">
+        <span>back to Voice</span>
+      </div>
+
+      <div class="link-base-border">
+        <div class="link-base-action">
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="voice-info panel-padding"> <!-- .panel-padding -->
+    <h2 class="voice-title"><%= @voice.title %></h2>
+    <ul class="voice-info-tools" data-hansel-component-id="posts-voice-info-tool">
+      <li class="info-tool maps"><a title="map" class="info-tool-link map"></a></li>
+      <li class="info-tool widget">
+        <a class="info-tool-link" href="#" title="widget"></a>
+        <div class="tooltip">
+          <div class="tooltip-positioner">
+            <p class="tooltip-arrow"><span></span></p>
+            <form>
+              <fieldset  class="grab-blog-widget media-type-info">
+                <strong class="blog-widget-title">Grab Blog Widget</strong>
+                <span class="blog-widget-subtitle">Choose widget’s height</span>
+                <label class="blog-widget-label" for="blog-widget-size-small"><input id="blog-widget-size-small" class="widget-height" type="radio" value="small" name="height" checked="checked" />Small</label>
+                <label class="blog-widget-label" for="blog-widget-size-medium"><input id="blog-widget-size-medium" class="widget-height" type="radio" value="medium" name="height" />Medium</label>
+                <label class="blog-widget-label" for="blog-widget-size-tall"><input id="blog-widget-size-tall" class="widget-height" type="radio" value="tall" name="height" />Tall</label>
+                <span class="blog-widget-subtitle no-border">Choose widget’s scope</span>
+                <label class="blog-widget-label" for="blog-widget-scope-this"><input id="blog-widget-scope-this" class="widget-scope" type="radio" value="this" name="scope" checked="checked" />This voice</label>
+                <label class="blog-widget-label" for="blog-widget-scope-all"><input id="blog-widget-scope-all" class="widget-scope" type="radio" value="all" name="scope" />All voices</label>
+                <p><label class="blog-widget-label" for="blog-widget-show-description"><input id="blog-widget-show-description" class="description-checkbox" type="checkbox" value="1" name="description" />Include description</label></p>
+                <p><label class="blog-widget-label" for="blog-widget-show-rtl"><input id="blog-widget-show-rtl" class="rtl-checkbox" type="checkbox" value="1" name="rtl" />Right to Left</label></p>
+                <textarea  class="blog-widget-textarea" data-template="<iframe src='http://crowdvoice.org/widget/<%= @voice.slug %>?size={{size}}&scope={{scope}}&show_description={{show_description}}&rtl={{rtl}}' scrolling='no' frameborder='0' style='overflow:hidden; border:none; width:100%; height:{{height}}px;' allowTransparency='true'></iframe>"><iframe src='http://crowdvoice.org/widget/<%= @voice.slug %>?size=small&scope=this&show_description=0&rtl=0' scrolling='no' frameborder='0' style='overflow:hidden; border:none; width:100%;height:400px;' allowTransparency='true'></iframe>
+                </textarea>
+              </fieldset>
+            </form>
+          </div>
+        </div>
+      </li>
+      <li class="info-tool rss"><%= link_to '', voice_path(@voice, :format => :rss), :class => 'info-tool-link', :title => 'RSS feed' %></li>
+      <li class="info-tool twitter"><%= link_to '', "http://twitter.com/intent/tweet?text=#{CGI.escape @voice.title}&url=#{CGI.escape voice_url(@voice)}&via=crowdvoice", :target => '_blank', :title => 'Share on Twitter', :class => 'info-tool-link' %></li>
+      <li class="info-tool facebook-like-button"><iframe src="http://www.facebook.com/plugins/like.php?app_id=101972966529938&amp;href=<%= CGI.escape voice_url(@voice) %>&amp;send=false&amp;layout=button_count&amp;width=150&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:21px;" allowTransparency="true"></iframe></li>
+    </ul>
+    <h4 class="voice-subtitle"><em><%= @voice.description %></em> <a class="more-button"><span>More</span></a></h4>
+  </div>
+  <div class="post-and-actions panel-padding" data-hansel-component-id="posts-new-post">
+    <div class="post-width">
+      <%= form_for Post.new, :url => voice_posts_path(@voice, :format => :json), :html => { :multipart => true } do |f| %>
+        <%= f.text_field :url_check, :style => "display:none" %>
+        <fieldset class="post">
+          <p class="post-paceholder"><span>Post a URL or </span><%= f.file_field :image %><a href="#" title="Upload an Image">Upload an Image</a><span class="cover"></span></p>
+          <ul class="post-type">
+            <li class="media tool-image">
+              <a class="media-type image-tool" href="#" title="Image"></a>
+              <div class="tooltip">
+                <div class="tooltip-positioner">
+                  <p class="tooltip-arrow"><span></span></p>
+                  <div class="media-type-info image-tip">
+                    <div class="without-image">
+                      <strong class="media-type-title">Put the URL of your image to display in this voice.</strong>
+                    </div>
+                    <div class="with-image">
+                      <span class="tooltip-label">Add a title to your image:</span>
+                        <input type="text" id="image_title" name="post[image_title]"/>
+                      <span class="tooltip-label">Add a message to your image:</span>
+                        <textarea id="image_description" class="link-textarea" name="post[image_description]"></textarea>
+                    </div>
+                    <span class="media-type-subtitle">Also you can send images to this email:</span>
+                    <%= mail_to "voice+#{@voice.id}@crowdvoice.org", nil, :class => 'media-type-link', :encode => "javascript" %>
+                    <em class="media-type-notice">(max-size for attachments is 2mb.)</em>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li class="media tool-video">
+              <a class="media-type video-tool" href="#" title="Video"></a>
+              <div class="tooltip">
+                <div class="tooltip-positioner">
+                  <p class="tooltip-arrow"><span></span></p>
+                  <p class="media-type-info">
+                    <strong class="media-type-title">Put the URL of a Youtube or Vimeo video to display in this voice.</strong>
+                  </p>
+                </div>
+              </div>
+            </li>
+            <li class="media tool-link">
+              <a class="media-type link-tool" href="#" title="Link"></a>
+              <div class="tooltip link-img-post">
+                <div class="tooltip-positioner normal">
+                  <p class="tooltip-arrow"><span></span></p>
+                  <p class="media-type-info">
+                    <strong class="media-type-title">Put the URL of your Notice, Blog Post, or Article to display in this voice.</strong>
+                  </p>
+                </div>
+                <div class="tooltip-positioner carousel">
+                  <p class="tooltip-arrow"><span></span></p>
+                  <div class="media-type-info">
+                    <div class="without-link">
+                      <strong class="media-type-title">Put the URL of your Notice, Blog Post, or Article to display in this voice.</strong>
+                    </div>
+                    <div class="with-link">
+                      <%= f.hidden_field :remote_image_url %>
+                      <h3>Choose an image for this Link</h3>
+                      <div class="carousel-image">
+                        <img src="/images/loader.gif" border="0" class="carousel-loader" style="display: none"/>
+                      </div>
+                      <div class="carousel-arrows">
+                        <div id="carousel_left_arrow" class="left-arrow"></div>
+                        <div id="carousel_right_arrow" class="right-arrow"></div>
+                        <div class="carousel-counter"></div>
+                      </div>
+                      <p class="description-link">Add custom description to the link</p>
+                      <textarea id="link_description" class="link-textarea" name="post[description]"></textarea>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+          <%= f.text_field :source_url %>
+          <div class="post-button"><%= f.submit 'Post' %>
+            <div class="tooltip notice">
+              <div class="tooltip-positioner">
+                <p class="tooltip-arrow"><span></span></p>
+                <div class="media-type-info">
+                  <!-- <strong class="media-type-title">Hello!</strong> -->
+                  <p class="moderate-tooltip"></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+      <% end %>
+    </div>
+  </div>
+  <div class="filters-and-mode" data-hansel-component-id="posts-filters-mode">
+    <div class="panel-padding">
+      <form>
+        <fieldset class="filters">
+          <p>Show:</p>
+          <label><input type="checkbox" name="image" checked="checked" />Photos</label>
+          <label><input type="checkbox" name="video" checked="checked" />Videos</label>
+          <label><input type="checkbox" name="link" checked="checked" />Links</label>
+        </fieldset>
+      </form>
+    </div>
+    <form class="form-right">
+      <fieldset class="mode">
+        <p>Mode:</p>
+        <ul>
+          <li class="mode-button <%= 'selected' unless params[:mod] %> public"><p class="button"><%= link_to "Public", @voice %></p>
+            <div class="tooltip">
+              <div class="tooltip-positioner">
+                <p class="tooltip-arrow"><span></span></p>
+                <div class="media-type-info">
+                  <strong class="media-type-title"></strong>
+                  <p class="moderate-tooltip">
+                    <span>Go back to public mode</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li class="mode-button <%= 'selected' if params[:mod] %> mod"><p class="button"><%= link_to "Moderator", voice_path(@voice, :mod => 1) %></p>
+            <div class="tooltip">
+              <div class="tooltip-positioner">
+                <p class="tooltip-arrow"><span></span></p>
+                <div class="media-type-info">
+                  <strong class="media-type-title">Participate!</strong>
+                  <p class="moderate-tooltip">
+                    <span>Help us approve images, videos and external links.</span> Flag any content that you feel should not be posted here.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </fieldset>
+    </form>
+  </div>
+
+  <% if @voice.logo.url %>
+    <div class="header-sponsor">
+      <%= link_to_if @voice.logo_link.present?, image_tag(@voice.logo.url, :title => "Sponsored by #{@voice.sponsor}", :alt => @voice.sponsor), @voice.logo_link %>
+      <span class="sponsor-slogan"><%= @voice.sponsor_slogan %></span>
+    </div>
+  <% end %>
+</header>
+<div class="sweeper header-sep"></div>
+<section class="voice-wrapper">
+  <% if @voice.announcement.present? %>
+    <div class="panel-padding">
+      <div class="flash-message">
+        <div class="message">
+          <p><span><%= link_to_if @voice.announcement.url, @voice.announcement.title, @voice.announcement.url %></span> <%= @voice.announcement.content %></p>
+          <a class="close-message"></a>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+  <script>
+    var posts_votes = <%= @votes.to_json.html_safe %>;
+  </script>
+
+  <% cache(cache_key_for_posts @voice) do %>
+    <%= render :partial => "posts" %>
+  <% end %>
+
+  <%= render :partial => "discuss" %>
+</section>

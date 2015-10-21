@@ -1,0 +1,38 @@
+<header class='form'>
+  <ul class="action-buttons clearfix fr">
+    <li>
+      <%= link_to new_admin_voice_path, {:class => 'button button-gray'} do %>
+        <span class="add"></span>
+        Add a Voice
+      <% end %>
+    </li>
+  </ul>
+  <h2>Voices</h2>
+</header>
+<section class="with-table">
+  <table class="datatable paginate full">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Num. of Posts</th>
+        <th>Location</th>
+        <th class="actions"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% for voice in @voices %>
+      <tr>
+        <td class="title"><%= link_to voice.title, voice %></td>
+        <td><%= voice.posts.size %></td>
+        <td><%= voice.location %></td>
+        <td class="actions">
+          <%= link_to "Edit", edit_admin_voice_path(voice), :class => 'action edit' %>
+          <%= link_to "Delete", [:admin, voice], :confirm => "Are you sure?", :method => :delete, :class => 'action delete' %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</section>
+
+<%= paginate @voices %>

@@ -1,0 +1,35 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  voice_id: 1
+  user_id: 1
+  title: MyString
+  description: MyString
+  positive_votes_count: 1
+  negative_votes_count: 1
+  overall_score: 1
+  source_url: MyString
+  source_type: MyString
+  source_service: MyString
+  image: MyString
+  approved: false
+  copyright: MyString
+  image_width: 1
+  image_height: 1
+
+two:
+  voice_id: 1
+  user_id: 1
+  title: MyString
+  description: MyString
+  positive_votes_count: 1
+  negative_votes_count: 1
+  overall_score: 1
+  source_url: MyString
+  source_type: MyString
+  source_service: MyString
+  image: MyString
+  approved: false
+  copyright: MyString
+  image_width: 1
+  image_height: 1
